@@ -190,3 +190,10 @@ getWeather(latitude, longitude);
 // 		console.log(error);
 // 	})
 // }
+
+
+
+ const listItem = document.createElement('li');
+		//   listItem.classList.add('weather-week__item')
+        listItem.innerHTML = `Дата: <span class="weather-week__value">${formattedDate}</span>, Мінімальна температура: <span class="weather-week__value">${minTempValue}</span>, Максимальна температура: <span class="weather-week__value">${maxTempValue}</span>, Опис погоди: <span class="weather-week__value">${weatherValue}</span>`;
+        weatherWeekDayForecast.appendChild(listItem);

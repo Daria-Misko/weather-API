@@ -9,105 +9,151 @@ a {
 	color: inherit;
 }
 
-body {
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-		Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	// -webkit-font-smoothing: antialiased;
-	// -moz-osx-font-smoothing: grayscale;
-	// background-color: #fafafa; 
-	background-image: url(/src/images/yuriy-kovalev-nN1HSDtKdlw-unsplash.jpeg);
-	color: #212121;
-	line-height: 1.5;
+.off {
+	display: none;
 }
 
-svg {
-	--sz: 1em;
-	width: var(--sz);
-	height: var(--sz);
+.is-hidden {
+	opacity: 0;
+	pointer-events: none;
+	visibility: hidden;
 }
 
-.submitBtn {
-	border: none;
-	margin: 20px auto;
-	width: 50px;
-	height: 50px;
+.weather-container {
+	margin: 0;
+	width: 395px;
+	height: 675px;
+	background-color: var(--components-color);
+	padding: 45px 70px 60px 53px;
+	font-family: 'Roboto', sans-serif;
+	color: #FFFFFF;;
+}
+
+.weather-top-card {
+
+	display: flex;
+}
+
+.temperature-value {
+	font-weight: 400;
+	font-size: 64px;
+	line-height: 1.17;
+	border-right: 1px solid #FFFFFF;
+	padding-right: 8px;
+}
+
+.temperature-description {
+	font-weight: 400;
+	font-size: 36px;
+	line-height: 1.16;
+}
+
+.description-wrapper {
+	display: flex;
+	flex-direction: column;
+	padding-left: 8px;
+}
+
+.location {
+	min-width: 177px;
+	min-height: 42px;
+	background: rgba(254, 254, 255, 0.3);
+	border-radius: 10px;
+	padding: 10px 17px 10px 35px;
+	text-align: center;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 1.15;
+	position: relative;
+
+	// svg{
+	// 	position: absolute;
+	// 	left: 0;
+	// 	top: 7px;
+	// }
+	&:before {
+		content: url(/src/images/icons/location.svg);
+		position: absolute;
+		left: 7px;
+		bottom: 4px;
+	}
+}
+
+.weather-icon {
+	// margin-top: 90px;
+	// height: auto;
+	// max-width: 100%;
+	height: auto;
+		max-width: 100%;
+		display: block;
+		margin: 80px auto 80px;
+		// margin-bottom: 32px 0;
+		text-align: center;
+	img{
+		// height: auto;
+		// max-width: 100%;
+		// display: block;
+		// margin: 0 auto;
+		// display: inline-block;
+		// width: 165px;
+		// height: 156px;
+		// object-position: 50% 50%;
+		// object-fit: cover;
+		display: inline-block;
+			width: 165px;
+			height: 155px;
+			object-position: 50% 50%;
+			object-fit: cover;
+	}
+}
+
+.day, .date {
+	font-weight: 400;
+	font-size: 36px;
+	line-height: 1.16;
+	text-align: center;
+	margin: 0;
+	margin-bottom: 5px;
+}
+
+.date {}
+
+.week-weather{
+	margin-top: 28px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-radius: 30px;
-	transition: .25s;
-	cursor: pointer;
-	opacity: 0.8;
-	// position: absolute;
-	// left: 50%;
-	// -webkit-transform: translateX(-50%);
-	// -moz-transform: translateX(-50%);
-	// transform: translateX(-50%);
 
-	&:hover {
-		color: 716c9f;
-	}
 }
-.user-container {
-	gap: 67px;
-	display: flex;
-	flex-wrap: wrap;
-	padding: 100px 90px;
-	justify-content: center;
-	align-content: center;
-}
-
-.user-card {
-	display: block;
-	border: 1px solid #716c9f;
-	border-radius: 20px;
-	padding: 5px 15px;
-	background-color: #716c9f;
-	color: #fafafa;
-	transition: 0.5s;
-	opacity: 0.8;
-
-	&:hover, :focus {
-	color: #716c9f;
-	background-color: #fafafa;
-	transform: scale(1.1);
-	cursor: pointer;
-}
-}
-
-img {
-	display: block;
-}
-
-.single-user-card {
-	background-color: #716c9fa4;
-	border-radius: 6px;
-	box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
-	margin: 20px 0 0 30px;
-	display: block;
-	width: 300px;
-	height: 250px;
-	padding: 15px 50px;
-	transition: transform 0.5s;
-	-webkit-transition: transform 0.5s;
+.weather-button{
+	min-width: 177px;
+	min-height: 42px;
+	background: rgba(254, 254, 255, 0.3);
+	border-radius: 10px;
 	text-align: center;
+	padding: 12px 9px;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 1.15;
+	border: none;
+	color: inherit;
 
-	&:hover {
-		cursor: pointer;
-		transform: scale(1.1);
-		-webkit-transform: scale(1.1);
-	}
-	& > img {
-		display: block;
-		margin: 0 auto;
-		opacity: 1;
-	}
-	& p {
-		text-align: center;
-		color: #d3d0d0;
-	}
-	& a {
-		color: #d3d0d0;
-	}
 }
 
+.weather-week__container {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	// margin: 0;
+	// width: 395px;
+	// height: 675px;
+}
+
+.weather-week__item{
+
+}
+
+.weather-week__value {
+
+}
