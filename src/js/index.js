@@ -35,14 +35,8 @@ const weather = {
 	data: `${day}`
 };
 
-// const currentMonth = new Date();
-// const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-// console.log(months[currentMonth.getMonth()]);
-
-// let currentDate = `${day}-${month}-${year}`;
-// console.log(currentDate); // "17-6-2022"
-
-
+dayElement.insertAdjacentHTML('beforeend', `${day}`); 
+dateElement.insertAdjacentHTML('beforeend', `${currentdate}`); 
 
 if('geolocation' in navigator){
     navigator.geolocation.getCurrentPosition(setPosition, showError);
@@ -91,44 +85,22 @@ function getWeather(latitude, longitude) {
 }
 
 function displayWeather() {
-	// const date = new Date()
-	// let currentdate = date.toLocaleDateString('en-gb', { day: "numeric", month: "short", year: "numeric" })
-	// const weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-	// let day = weekday[date.getDay()];
-	// console.log(day);
-	// console.log(currentdate);
-   iconElement.insertAdjacentHTML('beforeend', `<img src="http://openweathermap.org/img/wn/${weather.iconId}@4x.png" height= "155"
-	width= "165"/>`);
+   iconElement.innerHTML = `<img src="http://openweathermap.org/img/wn/${weather.iconId}@4x.png" height= "155"
+	width= "165"/>`;
    tempElement.insertAdjacentHTML('beforeend', `${weather.temperature.value}°`);
-   descElement.insertAdjacentHTML('beforeend', weather.description);
-	locationElement.insertAdjacentHTML('beforeend', `${weather.city}`);
-	dayElement.insertAdjacentHTML('beforeend', `${day}`); 
-	dateElement.insertAdjacentHTML('beforeend', `${currentdate}`); 
+   descElement.innerHTML = `${weather.description}`;
+	locationElement.innerHTML = `${weather.city}`;
 }
+
+
 
 function forecast(latitude, longitude) {
 	const newKey = 'ba7fddf449339701f9df702aeb87be1d'
-	// const API_URL = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${newKey}`;
 	const API_URL = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${newKey}`;
-	// const API_URL = `https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid={newKey}`;
     
 	fetch(API_URL)
   .then(response => response.json())
   .then(data => {
-   //  const dailyData = data.daily.slice(1, 5);
-	//   console.log(data);
-	//   let dataArray = []
-	//   for (let i = 0; i <= 50; i++) {
-   //    const date = data.list[i].dt_txt;
-   //    const temp = data.list[i].main.temp;
-	// 	 const description = data.list[i].weather[0].description;
-	// 	 const weatherIcon = data.list[i].weather[0].icon;
-	// 	  console.log(`Дата: ${date}, Температура: ${temp}, Опис погоди: ${description}, ${weatherIcon}`);
-	// 	  dataArray.push(data.list[i])
-	// 	  console.log(dataArray);
-	// 	  const dateArray = dataArray.filter(day => day.include(data.list[i].dt_txt));
-	// 	  console.log(dateArray);
-	//   }
 	  const dataArray = data.list;
 	  const groupedData = {};
 	  for (let i = 0; i < dataArray.length; i++) {
@@ -175,17 +147,16 @@ weatherWeekDayForecast.innerHTML = '';
 			const datePotoch = new Date(dateValue);
 			const formattedDate = datePotoch.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 
-  const minTempValue = data.minTemp;
-  const maxTempValue = data.maxTemp;
-		  const weatherValue = data.weather;
+  			const minTempValue = Math.floor(data.minTemp - KELVIN);
+  			const maxTempValue = Math.floor(data.maxTemp - KELVIN);
+		  	const weatherValue = data.weather;
   
 		  
-		  console.log(`Дата: ${formattedDate}, Мінімальна температура: ${minTempValue}, Максимальна температура: ${maxTempValue}, Опис погоди: ${weatherValue}`);
+		//   console.log(`Дата: ${formattedDate}, Мінімальна температура: ${minTempValue}, Максимальна температура: ${maxTempValue}, Опис погоди: ${weatherValue}`);
 		  
-		
-	// weatherWeekDayForecast.insertAdjacentHTML('beforeend', `Дата: ${formattedDate}, Мінімальна температура: ${minTempValue}, Максимальна температура: ${maxTempValue}, Опис погоди: ${weatherValue}`);
-		   const listItem = document.createElement('li');
-        listItem.innerHTML = `Дата: ${formattedDate}, Мінімальна температура: ${minTempValue}, Максимальна температура: ${maxTempValue}, Опис погоди: ${weatherValue}`;
+		  const listItem = document.createElement('li');
+		  listItem.classList.add('weather-week__item')
+        listItem.innerHTML = `<span class="weather-week__value">${formattedDate}</span>:<br> Min. temp: <span class="weather-week__value">${minTempValue}</span>, Max. temp: <span class="weather-week__value">${maxTempValue}</span><br> Descr.: <span class="weather-week__value">${weatherValue}</span>`;
         weatherWeekDayForecast.appendChild(listItem);
 
 });

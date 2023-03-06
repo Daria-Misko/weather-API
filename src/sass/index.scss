@@ -2,6 +2,24 @@
 @import './example';
 
 
+@mixin mobile {
+	@media screen and (min-width: 320px) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media screen and (min-width: 768px) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media screen and (min-width: 1280px) {
+		@content;
+	}
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -17,16 +35,29 @@ a {
 	opacity: 0;
 	pointer-events: none;
 	visibility: hidden;
+	transition: 500ms;
 }
 
 .weather-container {
 	margin: 0;
-	width: 395px;
+	width: 353px;
 	height: 675px;
 	background-color: var(--components-color);
-	padding: 45px 70px 60px 53px;
+	padding: 40px 32px 60px 32px;
 	font-family: 'Roboto', sans-serif;
-	color: #FFFFFF;;
+	color: #FFFFFF;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+		@include tablet {
+		}
+		@include desktop{
+			width: 395px;
+			height: 675px;
+			padding: 40px 53px 60px 53px;
+}
 }
 
 .weather-top-card {
@@ -86,7 +117,7 @@ a {
 	height: auto;
 		max-width: 100%;
 		display: block;
-		margin: 80px auto 80px;
+		margin: 60px auto 60px;
 		// margin-bottom: 32px 0;
 		text-align: center;
 	img{
@@ -137,6 +168,11 @@ a {
 	line-height: 1.15;
 	border: none;
 	color: inherit;
+	transition: background-color 250ms ease;
+
+	&:hover, :focus{
+		background: rgba(254, 254, 255, 0.5);
+	}
 
 }
 
@@ -145,15 +181,84 @@ a {
 	z-index: 1;
 	top: 0;
 	left: 0;
-	// margin: 0;
-	// width: 395px;
-	// height: 675px;
+	margin: 0;
+	width: 353px;
+	height: 675px;
+	padding: 45px 35px 60px 35px;
+
+	@include tablet {}
+	
+		@include desktop {
+			width: 395px;
+			height: 675px;
+			padding: 40px 53px 60px 53px;
+		}
+	margin: 0;
+	font-family: 'Roboto', sans-serif;
+	color: #FFFFFF;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	transition: transform 250ms ease;
+}
+
+.weather-week__list{
+	p{
+		font-size: 30px;
+		text-align: center;
+		margin-bottom: 20px;
+		text-decoration: underline;
+	}
+}
+
+.weather-week__forecast{
+	background: rgba(254, 254, 255, 0.3);
+	border-radius: 10px;
+	padding: 4px;
+
+	@include desktop {
+		padding: 8px;
+	}
 }
 
 .weather-week__item{
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 1.16;
 
+	@include tablet {}
+	
+		@include desktop {
+			font-weight: 400;
+			font-size: 18px;
+			line-height: 1.16;
+		}
 }
 
+.weather-week__item:not(:last-child){
+	margin-bottom: 10px;
+}
 .weather-week__value {
+}
 
+.weather-week-close-button{
+	min-width: 177px;
+	min-height: 42px;
+	background: rgba(254, 254, 255, 0.3);
+	border-radius: 10px;
+	text-align: center;
+	padding: 12px 9px;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 1.15;
+	border: none;
+	color: inherit;
+
+	transition: background-color 250ms ease;
+	
+		&:hover,
+		:focus {
+			background: rgba(254, 254, 255, 0.5);
+		}
 }
