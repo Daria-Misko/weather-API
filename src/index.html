@@ -13,6 +13,20 @@
   </head>
   <body>
     <body>
+		<div class="theme">
+          <svg class="theme__svg sun" width="21" height="21">
+            <use href="./images/icons/sun.svg"></use>
+          </svg>
+          <p class="theme__light">Light</p>
+          <label class="switch">
+            <input type="checkbox" class="switch-checkbox" />
+            <span class="slider round"></span>
+          </label>
+          <p class="theme__dark opacity">Dark</p>
+          <svg class="theme__svg moon" width="21" height="21">
+            <use href="./images/icons/moon.svg"></use>
+          </svg>
+        </div>
       <div class="weather-container__all">
       	<div class="weather-container">
 	        <div class="weather-current__container">
@@ -63,5 +77,6 @@
       </div >
 		
 		<script src="./js/index.js" type="module"></script>
+		<script src="./js/darkMode.js" type="module"></script>
     </body>
 </html>
